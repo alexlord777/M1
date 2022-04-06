@@ -76,3 +76,29 @@ const lol= new Queue();
 //lol.enqueue('tres');
 
 console.log(lol.dequeue());
+
+function retornaLetra(str,x){
+    let i= x-1;
+    return str.charAt(i);
+}
+
+console.log(retornaLetra('abcd',1));
+
+
+function arr(arr){
+    let ar='';
+    for(let i=0;i<3;i++){
+       ar+=arr[i];
+    }
+    return ar;
+}
+
+
+console.log(arr('lolojkjkjjh'));
+
+function myFunction(obj, key){
+
+   return obj[key];
+}
+
+console.log(myFunction({  country: 'Sweden',  continent: 'Europe'}, 'country'));
