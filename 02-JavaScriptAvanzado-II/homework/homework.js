@@ -14,7 +14,7 @@ function counter() {
   }
 }
 
-function cacheFunction(cb) {
+function cacheFunction(cb) { 
   // Usa closures para crear un caché para la función cb.
   // la función que retornas debe aceptar un solo argumento e invocar a cb con ese argumento
   // cuando la función que hayas retornado es invocada de nuevo, debería guardar el argumento y el resultado de la invocacion
@@ -26,11 +26,15 @@ function cacheFunction(cb) {
   // si la invocas de nuevo con 5, deberia retornar 25 (guardado previament en el cache)
   // Tips, usá un objeto donde cada propiedad sea un argumento, y el valor el resultado.
   // usá hasOwnProperty!
-  let acumulado=1;
+  let objeto={};
   return function(x)
   {
-     acumulado=cb(x);
-     return acumulado;
+     if(objeto.hasOwnProperty(x)){
+       return objeto[x];
+     }else{
+       objeto[x]=cb(x);
+       return objeto[x];
+     }
     
   }
 }
@@ -53,8 +57,8 @@ function getNombre(){
  // Escribir código, sin modificar lo que ya se encuentra escrito arriba, para poder llamar al método getNombre para obtener primero el nombre del instructor y luego para obtener el nombre del alumno.
 // Modificar los undefined por el código correspondiente en cada caso
 // Pista, tenes que bindear el this!
-let getNombreInstructor = undefined;
-let getNombreAlumno = undefined;
+let getNombreInstructor = getNombre.bind(instructor);
+let getNombreAlumno = getNombre.bind(alumno);
 
 
 /*Guardar en las siguientes tres variables una función que devuelva una cadena utilizando la función "crearCadena"
@@ -73,11 +77,10 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena){
 // Modificar los undefined por el código correspondiente en cada caso
 // Pista, tenes que usar bind para "bindear" algunos parámetros de la función crearCadena.
 
-let textoAsteriscos = undefined;
+let textoAsteriscos = crearCadena.bind(this,'*','*');
+let textoGuiones = crearCadena.bind(this,'-','-');
 
-let textoGuiones = undefined;
-
-let textoUnderscore = undefined;
+let textoUnderscore = crearCadena.bind(this,'_','_');
 
 
 
